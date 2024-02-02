@@ -4,13 +4,18 @@ import React from 'react'
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 
 
 const NewIssue = () => {
     const {control, handleSubmit, register} = useForm(); 
-    const onSubmit = (data) =>{
-        console.log(data)
+    const router = useRouter();
+    const  onSubmit = async (data) =>{
+        await axios.post("/api/issues", data); 
+        router.push("/"); 
+
     }
   return (
     <div className='mx-5 my-2'>
@@ -26,7 +31,7 @@ const NewIssue = () => {
             <SimpleMDE {...field}placeholder='Description'/>
         )}
         />
-        <button className="btn btn-primary">Send</button>
+        <button className="btn btn-primary" type='submit'>Send</button>
     </form>
     </div>
   )

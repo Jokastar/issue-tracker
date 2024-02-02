@@ -5,7 +5,7 @@ import React, { useEffect } from 'react'
 import { AiFillBug } from "react-icons/ai";
 import { usePathname } from 'next/navigation';
 import classNames from 'classnames';
-import createUser from './db';
+
 
 
 

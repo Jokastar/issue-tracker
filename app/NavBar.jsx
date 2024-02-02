@@ -1,15 +1,18 @@
 "use client"; 
 
 import Link from 'next/link';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AiFillBug } from "react-icons/ai";
 import { usePathname } from 'next/navigation';
 import classNames from 'classnames';
+import createUser from './db';
+
 
 
 const NavBar = () => {
     const links = [{label:"Dashboard", href:"/dashboard"}, {label:"Issues", href:"/issues"}]; 
     const currentPath = usePathname(); 
+    
   return (
     <nav className='p-4 flex items-center space-x-6 border-b-2 border-solid border-gray-300'>
         <Link href="/">

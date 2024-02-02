@@ -1,5 +1,7 @@
+import createUser from "./db"
 
 export default function Home() {
+  createUser(); 
   return (
     <>
     <main>

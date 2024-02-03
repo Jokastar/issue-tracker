@@ -14,16 +14,19 @@ import axios from 'axios';
 
 const NewIssue = () => {
     const [error, setError] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false); 
     const {control, handleSubmit, register, formState:{errors}} = useForm({
         resolver:zodResolver(createIssueSchema)
     }); 
     const router = useRouter();
     const  onSubmit = async (data) =>{
         try {
+            setIsSubmitting(true); 
             await axios.post("/api/issues", data); 
             router.push("/");    
         } catch (error) {
             setError("An error occured"); 
+            setIsSubmitting(false); 
         }
 
     }
@@ -43,7 +46,10 @@ const NewIssue = () => {
         )}
         />
         {errors.description && <ErrorMessage>{errors.description.message}</ErrorMessage>}
-        <button className="btn btn-primary" type='submit'>Send</button>
+        <button className="btn btn-primary" type='submit' disabled={isSubmitting}>
+            Send
+            {isSubmitting && <span className="loading loading-spinner loading-sm text-white"></span>}
+        </button>
     </form>
     </div>
   )

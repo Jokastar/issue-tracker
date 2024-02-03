@@ -1,6 +1,6 @@
 "use client"; 
 
-import React from 'react'
+import React, {useState} from 'react'
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from 'react-hook-form';
@@ -10,18 +10,23 @@ import axios from 'axios';
 
 
 const NewIssue = () => {
+    const [error, setError] = useState("");
     const {control, handleSubmit, register} = useForm(); 
     const router = useRouter();
     const  onSubmit = async (data) =>{
-        await axios.post("/api/issues", data); 
-        router.push("/"); 
+        try {
+            await axios.post("/api/issues", data); 
+            router.push("/");    
+        } catch (error) {
+            setError("An error occured"); 
+        }
 
     }
   return (
     <div className='mx-5 my-2'>
     <h2>Create a new issue</h2>
+    {error && <p className='bg-red-300 text-red-800 rounded p-3 w-2/3 mt-2'>{error}</p>}
     <form  className="w-2/3 my-2" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="title" className='block'>Title</label>
         <input type="text" placeholder="title" className="input input-bordered w-full my-3" {...register("title")}/>
         <Controller
         name='description'

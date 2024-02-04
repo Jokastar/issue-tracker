@@ -33,7 +33,7 @@ const NewIssue = () => {
   return (
     <div className='mx-5 my-2'>
     <h2>Create a new issue</h2>
-    {error && <p className='bg-red-300 text-red-800 rounded p-3 w-2/3 mt-2'>{error}</p>}
+    {error && <ErrorMessage >{error}</ErrorMessage>}
     <form  className="w-2/3 my-2" onSubmit={handleSubmit(onSubmit)}>
         <input type="text" placeholder="title" className="input input-bordered w-full my-3" {...register("title")}/>
         {errors.title && <ErrorMessage>{errors.title.message}</ErrorMessage>}

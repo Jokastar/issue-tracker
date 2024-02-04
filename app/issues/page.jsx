@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ErrorMessage from '../components/ErrorMessage';
+import Badge from '../components/Badge';
 import axios from 'axios';
 
 const Issues = () => {
@@ -24,10 +25,13 @@ const Issues = () => {
   }, []);
 
   return (
-    <>
+    <div className='mx-3 my-1'>
       <div>Issues</div>
       {error && <ErrorMessage>{error}</ErrorMessage>}
-      <table>
+      <Link href="/issues/new">
+        <button className="btn btn-wide btn-primary my-3 ">New Issue</button>
+      </Link>
+      <table className="table table-zebra table-sm my-4">
         <thead>
           <tr>
             <td>Title</td>
@@ -41,16 +45,14 @@ const Issues = () => {
             <tr key={issue.id}>
               <td>{issue.title}</td>
               <td>{issue.description}</td>
-              <td>{issue.status}</td>
-              <td>{issue.createdAt}</td>
+              <td>{<Badge>{issue.status}</Badge>}</td>
+              <td>{new Date(issue.createdAt).toDateString()}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <Link href="/issues/new">
-        <button className="btn btn-wide btn-primary">New Issue</button>
-      </Link>
-    </>
+
+    </div>
   );
 };
 

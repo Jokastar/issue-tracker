@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ErrorMessage from '../components/ErrorMessage';
 import axios from 'axios';
-import delay from 'delay';
 import IssueLink from './IssueLink';
 
 const Issues =  async () => {

@@ -1,10 +1,10 @@
 
 import React from 'react'; 
 import prisma from '@/prisma/client';
-import Link from 'next/link';
 import Badge from '@/app/components/Badge';
-import { MdEdit } from "react-icons/md";
+import EditButton from '@/app/components/EditButton';
 import ReactMarkdown from "react-markdown"; 
+import { notFound } from 'next/navigation';
 
 
 const IssueDetails = async ({params}) => {
@@ -16,8 +16,9 @@ const IssueDetails = async ({params}) => {
         }
     }) 
 
-    if(!issue) return (<p>No issue</p>)
-  return (
+    if(!issue) notFound(); 
+
+    return (
         <div className='grid grid-cols-2 gap-5 mx-5 my-7'>
             <div className='issueInfo'>
                 <h1 className='mb-5 text-4xl font-semibold'>{issue.title}</h1>
@@ -32,12 +33,7 @@ const IssueDetails = async ({params}) => {
                 </div>  
             </div>
             <div className='EditIssue'>
-                <Link href={`/issues/${id}/editIssue`}>
-                    <button className='flex items-center bg-indigo-600 text-white rounded p-3'>
-                        <span className='mx-3'>Edit</span>
-                        <MdEdit />
-                    </button>
-                </Link>
+                <EditButton id={id}/>
             </div>
         </div>
   )

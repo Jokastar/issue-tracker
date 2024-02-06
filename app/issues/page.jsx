@@ -3,10 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ErrorMessage from '../components/ErrorMessage';
-import Badge from '../components/Badge';
 import axios from 'axios';
+import delay from 'delay';
+import IssueLink from './IssueLink';
 
-const Issues = () => {
+const Issues =  async () => {
   const [error, setError] = useState(""); 
   const [issues, setIssues] = useState([]); 
   
@@ -14,6 +15,7 @@ const Issues = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("/api/issues");
+
         setIssues(response.data.issues);
         console.log(issues);
       } catch (error) {
@@ -25,7 +27,7 @@ const Issues = () => {
   }, []);
 
   return (
-    <div className='mx-3 my-1'>
+    <div className='mx-4 my-4'>
       <div>Issues</div>
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <Link href="/issues/new">
@@ -42,12 +44,7 @@ const Issues = () => {
         </thead>
         <tbody>
           {issues && issues.map((issue) => (
-            <tr key={issue.id}>
-              <td>{issue.title}</td>
-              <td>{issue.description}</td>
-              <td>{<Badge>{issue.status}</Badge>}</td>
-              <td>{new Date(issue.createdAt).toDateString()}</td>
-            </tr>
+            <IssueLink key={issue.id} issue={issue}/>
           ))}
         </tbody>
       </table>

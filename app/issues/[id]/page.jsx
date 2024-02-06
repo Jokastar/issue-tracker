@@ -33,7 +33,7 @@ const IssueDetails = async ({params}) => {
             </div>
             <div className='EditIssue'>
                 <Link href={`/issues/${id}/editIssue`}>
-                    <button className='flex items-center bg-indigo-700 text-white rounded p-3'>
+                    <button className='flex items-center bg-indigo-600 text-white rounded p-3'>
                         <span className='mx-3'>Edit</span>
                         <MdEdit />
                     </button>

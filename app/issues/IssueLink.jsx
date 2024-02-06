@@ -6,13 +6,11 @@ const IssueLink = ({issue}) => {
   return (
     
         <tr key={issue.id}>
-              <td>{issue.title}</td>
+              <td><Link className=' text-indigo-400 hover:text-indigo-700'href={`/issues/${issue.id}`}>{issue.title}</Link></td>
               <td>{issue.description}</td>
               <td>{<Badge>{issue.status}</Badge>}</td>
               <td>{new Date(issue.createdAt).toDateString()}</td>
-              <td><Link href={`/issues/${issue.id}`}><button>show issue</button></Link></td>
             </tr>
-
   )
 }
 

@@ -3,6 +3,7 @@ import React from 'react';
 import prisma from '@/prisma/client';
 import Badge from '@/app/components/Badge';
 import EditButton from '@/app/components/EditButton';
+import DeleteButton from '@/app/components/DeleteButton';
 import ReactMarkdown from "react-markdown"; 
 import { notFound } from 'next/navigation';
 
@@ -34,6 +35,7 @@ const IssueDetails = async ({params}) => {
             </div>
             <div className='EditIssue'>
                 <EditButton id={id}/>
+                <DeleteButton id={id}/>
             </div>
         </div>
   )

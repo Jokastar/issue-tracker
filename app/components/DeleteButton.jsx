@@ -1,11 +1,39 @@
 "use client"; 
 
-import React from 'react'
+import React, {useState} from 'react'; 
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
-const DeleteButton = () => {
+
+const DeleteButton = ({id}) => {
+    const [isDeleting, setisDeleting] = useState(false); 
+    const router = useRouter(); 
+    const onDelete = async (id) => {
+        try {
+            setisDeleting(true); 
+            const response = await axios.delete("/api/issues/" + id);
+            
+            if (response.status === 200) {
+                // Successful deletion
+                router.push("/issues"); 
+                router.refresh();
+            } else {
+                // Handle unsuccessful response
+                alert("Failed to delete issue: " + response.statusText);
+            }
+        } catch (error) {
+            // Handle request error
+            setisDeleting(false); 
+            alert("Failed to delete issue: " + error.message);
+        } finally {
+            document.getElementById('my_modal_1').close(); 
+        }
+    }
+    
+    
   return (
     <>
-        <button className="btn bg-red-600 font-normal text-base text-white rounded p-3 px-6" onClick={()=>document.getElementById('my_modal_1').showModal()}>Delete issue</button>
+        <button className="btn bg-red-500 hover:bg-red-700 font-normal text-base text-white rounded mx-4" onClick={()=>document.getElementById('my_modal_1').showModal()}>Delete issue</button>
         <dialog id="my_modal_1" className="modal">
             <div className="modal-box">
             <h3 className="font-bold text-lg">Confirm deletion</h3>
@@ -14,10 +42,11 @@ const DeleteButton = () => {
                     <form method="dialog">
                         <button className="btn">Cancel</button>
                     </form>
-                    <button className="btn bg-red-500 text-white">Delete</button>
+                    <button className="btn bg-red-500 text-white" onClick={()=>onDelete(id)} disabled={isDeleting}>Delete {isDeleting && <span className="loading loading-spinner loading-sm text-white"></span>}</button>
                 </div>
             </div>
         </dialog>
+
     </>
   )
 }

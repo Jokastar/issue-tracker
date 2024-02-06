@@ -21,7 +21,7 @@ const IssueForm = ({issue}) => {
     const onSubmit = async (data) =>{
         try {
             setIsSubmitting(true); 
-            issue ?  await axios.patch("/api/issues/"+issue.id+"/edit", data): await axios.post("/api/issues", data); 
+            issue ?  await axios.patch("/api/issues/"+issue.id, data): await axios.post("/api/issues", data); 
             router.push("/");    
         } catch (error) {
             setError("An error occured"); 

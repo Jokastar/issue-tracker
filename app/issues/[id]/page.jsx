@@ -33,7 +33,7 @@ const IssueDetails = async ({params}) => {
                     </div>
                 </div>  
             </div>
-            <div className='EditIssue'>
+            <div className='flex'>
                 <EditButton id={id}/>
                 <DeleteButton id={id}/>
             </div>

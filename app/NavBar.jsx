@@ -1,7 +1,8 @@
 "use client"; 
 
 import Link from 'next/link';
-import React from 'react'
+import React from 'react'; 
+import DropdownMenu from "./components/DropdownMenu"; 
 import { usePathname } from 'next/navigation';
 import {useSession} from "next-auth/react"; 
 
@@ -18,7 +19,7 @@ const NavBar = () => {
       
   return (
     <nav className='p-4 flex items-center justify-between space-x-6 border-b-2 border-solid border-gray-300'>
-       <div className='flex items-center justify-around'>
+       <div className='flex items-center'>
        <Link href="/">
             <AiFillBug size={28}/>
         </Link>
@@ -38,9 +39,7 @@ const NavBar = () => {
         {status === "authenticated" && <span>{data?.user.name}</span>}
        </div>
         
-        <div>
-        {status === "authenticated" ? <Link className='text-zinc-600 hover:text-zinc-900 transitons colors' href="/api/auth/signout">Sign out</Link>: <Link href="/api/auth/signin" className='text-zinc-600 hover:text-zinc-900 transitons colors'>Sign in</Link>}
-        </div>
+      {status === "authenticated" ? <DropdownMenu avatar={data?.user.image}/>: <Link href="/api/auth/signin" className='text-zinc-600 hover:text-zinc-900 transitons colors'>Sign in</Link>}
     </nav>
   )
 }

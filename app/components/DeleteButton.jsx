@@ -46,7 +46,6 @@ const DeleteButton = ({id}) => {
                 </div>
             </div>
         </dialog>
-
     </>
   )
 }

@@ -6,7 +6,7 @@ import ErrorMessage from '../components/ErrorMessage';
 import axios from 'axios';
 import IssueLink from './IssueLink';
 
-const Issues =  async () => {
+const Issues = () => {
   const [error, setError] = useState(""); 
   const [issues, setIssues] = useState([]); 
   
@@ -16,7 +16,6 @@ const Issues =  async () => {
         const response = await axios.get("/api/issues");
 
         setIssues(response.data.issues);
-        console.log(issues);
       } catch (error) {
         setError(error.message);
       }

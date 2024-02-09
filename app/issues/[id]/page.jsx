@@ -4,7 +4,8 @@ import prisma from '@/prisma/client';
 import Badge from '@/app/components/Badge';
 import EditButton from '@/app/components/EditButton';
 import DeleteButton from '@/app/components/DeleteButton';
-import ReactMarkdown from "react-markdown"; 
+import ReactMarkdown from "react-markdown";
+import AssignedUser from './AssignedUser'; 
 import { notFound } from 'next/navigation';
 
 
@@ -36,6 +37,7 @@ const IssueDetails = async ({params}) => {
             <div className='flex'>
                 <EditButton id={id}/>
                 <DeleteButton id={id}/>
+                <AssignedUser/>
             </div>
         </div>
   )

@@ -1,6 +1,5 @@
 import React from 'react'
-import IssueForm from '../../IssueForm'; 
-
+import IssueForm from '../../IssueForm';
 const EditIssue = async ({params}) => {
   let id = params.id
    

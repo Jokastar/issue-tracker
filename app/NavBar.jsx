@@ -39,7 +39,7 @@ const NavBar = () => {
         {status === "authenticated" && <span>{data?.user.name}</span>}
        </div>
         
-      {status === "authenticated" ? <DropdownMenu avatar={data?.user.image}/>: <Link href="/api/auth/signin" className='text-zinc-600 hover:text-zinc-900 transitons colors'>Sign in</Link>}
+      {status === "authenticated" ? <DropdownMenu avatar={data?.user.image}/> : <Link href="/api/auth/signin" className='text-zinc-600 hover:text-zinc-900 transitons colors'>Log in</Link>}
     </nav>
   )
 }

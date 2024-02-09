@@ -18,6 +18,7 @@ model Issue{
     status String @default("OPEN")
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    user User @relation(fields:[id], references: [id])
 }
 model Account {
   id                 String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -54,6 +55,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  issues        Issue[]
 }
 
 model VerificationToken {

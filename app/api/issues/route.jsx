@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/prisma/client";
-import issueSchema from "../../IssueSchema"; 
+import {issueSchema} from "../../IssueSchema"; 
 
 export async function GET (request){
    try {

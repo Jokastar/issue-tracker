@@ -1,3 +1,5 @@
+"use client"; 
+
 import { QueryClient, QueryClientProvider as QueryClientProviderWrapper} from "react-query"; 
 
 import React from 'react'
